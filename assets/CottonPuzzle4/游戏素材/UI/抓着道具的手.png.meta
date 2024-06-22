@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "042f4c53-c716-4c19-819f-eacd190b0e72",
+  "importer": "image",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 83,
+  "height": 110,
+  "platformSettings": {},
+  "subMetas": {
+    "抓着道具的手": {
+      "ver": "1.0.6",
+      "uuid": "042f4c53-c716-4c19-819f-eacd190b0e72@6c48a",
+      "importer": "texture",
+      "rawTextureUuid": "042f4c53-c716-4c19-819f-eacd190b0e72",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 83,
+      "height": 110,
+      "rawWidth": 83,
+      "rawHeight": 110,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
