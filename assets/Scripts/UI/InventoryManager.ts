@@ -36,10 +36,8 @@ export default class InventoryManager extends RenderManager {
         console.log("进入inventorymanager");
 
         //删除placeholder的所有子元素，方便后面加入
-        if (this.placeholder.children) {
-            this.placeholder.destroyAllChildren()
-        }
-
+        this.placeholder.removeAllChildren()
+        //拿到背包中的所有物品
         //首先去datamanager拿到背包相关的item，把他过滤出来
         const isInventoryItems = DataManager.Instance.items.filter(i => i.status === ItemStatusEnum.Inventory)
         //如果isInventoryItems中有东西，则显示背包，没东西不显示
@@ -64,7 +62,10 @@ export default class InventoryManager extends RenderManager {
                 DataManager.Instance.curItemType = type
             }
         }
+        //将DataManager.Instance.curItemType转为boolean类型并且判断是否选择，有则显示手
         this.hand.active = Boolean(DataManager.Instance.curItemType) && DataManager.Instance.isSelect
+        //调用置灰方法
+        this.changBtninteractbale()
 
     }
     onLoad() {
@@ -88,6 +89,8 @@ export default class InventoryManager extends RenderManager {
                 //创建key预制体，把他加入，并且修改文本信息
                 const MailNode = cc.instantiate(this.MailPF)
                 this.placeholder.addChild(MailNode)
+                MailNode.y = 0
+                MailNode.x = 0
                 this.label.string = MailNode.getComponent(ItemManager).label
                 break
             default: break
@@ -97,5 +100,56 @@ export default class InventoryManager extends RenderManager {
     handleSelect() {
         //判断是否选中
         DataManager.Instance.isSelect = !DataManager.Instance.isSelect
+    }
+    //左按钮
+    handleLeftBtn() {
+        //判断是否选中
+        if (DataManager.Instance.curItemType === null) {
+            return
+        }
+        //首先去datamanager拿到背包相关的item，把他过滤出来
+        const isInventoryItems = DataManager.Instance.items.filter(i => i.status === ItemStatusEnum.Inventory)
+        //获取背包里的索引值
+        const index = isInventoryItems.findIndex(i => i.type === DataManager.Instance.curItemType)
+        if (index > 0) {
+            //取消选中
+            DataManager.Instance.isSelect = false
+            //将背包物品的类型换成前一个物品
+            DataManager.Instance.curItemType = isInventoryItems[index - 1].type
+        }
+    }
+    //右按钮
+    handleRightBtn() {
+        //判断是否选中
+        if (DataManager.Instance.curItemType === null) {
+            return
+        }
+        //首先去datamanager拿到背包相关的item，把他过滤出来
+        const isInventoryItems = DataManager.Instance.items.filter(i => i.status === ItemStatusEnum.Inventory)
+        //获取背包里的索引值
+        const index = isInventoryItems.findIndex(i => i.type === DataManager.Instance.curItemType)
+        if (index < isInventoryItems.length - 1) {
+            //取消选中
+            DataManager.Instance.isSelect = false
+            //将背包物品的类型换成后一个物品
+            DataManager.Instance.curItemType = isInventoryItems[index + 1].type
+        }
+    }
+    //最左和最右置为灰色
+    changBtninteractbale() {
+        //判断是否选中时,直接把两个按钮设置为不可交互
+        if (DataManager.Instance.curItemType === null) {
+            this.leftBtn.interactable = false
+            this.rightBtn.interactable = false
+            return
+        }
+        //首先去datamanager拿到背包相关的item，把他过滤出来
+        const isInventoryItems = DataManager.Instance.items.filter(i => i.status === ItemStatusEnum.Inventory)
+        //获取背包里的索引值
+        const index = isInventoryItems.findIndex(i => i.type === DataManager.Instance.curItemType)
+        //index大于0时左边可以交互，index小于背包长度时右边可交互
+        this.leftBtn.interactable = index > 0
+        this.rightBtn.interactable = index < isInventoryItems.length - 1
+
     }
 }
