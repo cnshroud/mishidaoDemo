@@ -20,7 +20,10 @@ export default class DataManager extends Singleton {
         return super.GetInstance<DataManager>()
     }
 
-
+    //用来记录当前背包显示的物品是什么，类型是ItemTypeEnum | null，默认为null
+    private _curItemType: ItemTypeEnum | null = null
+    //判断有没有选中背包物品
+    private _isSelect = false
 
     private _items: Array<IItem> = [
         { type: ItemTypeEnum.Key, status: ItemStatusEnum.Scene },
@@ -34,9 +37,31 @@ export default class DataManager extends Singleton {
     }
     set items(newData: IItem[]) {
         this._items = newData
-        console.log("进入setitem方法，触发渲染事件");
+        // console.log("进入setitem方法，触发渲染事件");
+        this.render()
 
+    }
+
+    get curItemType() {
+        return this._curItemType
+    }
+    set curItemType(newData: ItemTypeEnum) {
+        this._curItemType = newData
+        this.render()
+    }
+
+    get isSelect() {
+        return this._isSelect
+
+    }
+    set isSelect(newData: boolean) {
+        this._isSelect = newData
+        this.render()
+    }
+    //触发渲染函数
+    render() {
         //触发渲染
         EventManager.Instance.emit(eventEnum.Render)
     }
+
 }

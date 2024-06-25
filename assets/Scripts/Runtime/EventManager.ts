@@ -48,13 +48,13 @@ export default class EventManager extends Singleton {
 
     //触发事件（通过事件名称触发）一般触发事件都需要传入参数，所以用...params接受参数，因为不知道类型是什么所以选unknown
     emit(eventName: string, ...params: unknown[]) {
-        console.log("事件字典", this.eventDic);
+        // console.log("事件字典", this.eventDic);
 
-        console.log("渲染事件名称", eventName);
+        // console.log("渲染事件名称", eventName);
 
         if (this.eventDic.has(eventName)) {
             //遍历这个数组，用foreach执行数组里的每一个函数，在执行之前要解构出func和ctx
-            console.log("eventName", eventName);
+            // console.log("eventName", eventName);
             this.eventDic.get(eventName).forEach(({ func, ctx }) => {
                 //把参数传入函数调用里，判断有没有上下文，如果有则使用.apply（）来绑定上下文，没有上下文就直接调用函数
                 ctx ? func.apply(ctx, params) : func(...params)

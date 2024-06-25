@@ -60,10 +60,10 @@ export default class ItemManager extends RenderManager {
         //根据datamanager的数据决定视图要怎么渲染,首先要拿到status,通过可链式操作拿到状态 ?.是可链式操作，如果属性不存在，可选链操作符不会抛出错误，而是返回 undefined，如果存在，它会尝试访问 status
         //可选链操作符不能用于基本数据类型（如 string、number 等），只能用于对象。只能在 TypeScript 中使用，因为它是一个 TypeScript 的特性。
         const status = DataManager.Instance.items.find(i => i.type === this.type)?.status
-        console.log("ItemManager:", DataManager.Instance.items);
-        console.log("this.type:", this.type);
-        console.log("status:", status);
-        console.log("ItemStatusEnum.Scene", ItemStatusEnum.Scene);
+        // console.log("ItemManager:", DataManager.Instance.items);
+        // console.log("this.type:", this.type);
+        // console.log("status:", status);
+        // console.log("ItemStatusEnum.Scene", ItemStatusEnum.Scene);
 
 
         //拿到sprite组件
@@ -71,12 +71,12 @@ export default class ItemManager extends RenderManager {
         switch (status) {
             //如果在场景里则显示场景图片
             case ItemStatusEnum.Scene:
-                console.log("在场景中");
+                // console.log("在场景中");
 
                 this.node.active = true;
                 sprite.spriteFrame = this.sceneSf;
                 if (sprite.spriteFrame = this.sceneSf) {
-                    console.log("场景图片");
+                    // console.log("场景图片");
                 }
                 break;
             //如果在背包里则显示背包图片
