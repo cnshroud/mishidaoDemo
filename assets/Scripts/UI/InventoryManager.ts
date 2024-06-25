@@ -36,7 +36,10 @@ export default class InventoryManager extends RenderManager {
         console.log("进入inventorymanager");
 
         //删除placeholder的所有子元素，方便后面加入
-        // this.placeholder.destroyAllChildren()
+        if (this.placeholder.children) {
+            this.placeholder.destroyAllChildren()
+        }
+
         //首先去datamanager拿到背包相关的item，把他过滤出来
         const isInventoryItems = DataManager.Instance.items.filter(i => i.status === ItemStatusEnum.Inventory)
         //如果isInventoryItems中有东西，则显示背包，没东西不显示
@@ -76,11 +79,9 @@ export default class InventoryManager extends RenderManager {
             case ItemTypeEnum.Key:
                 //创建key预制体，把他加入，并且修改文本信息
                 const KeyNode = cc.instantiate(this.KeyPF)
-                // this.placeholder.addChild(KeyNode)
-                this.node.addChild(KeyNode)
-
-                // KeyNode.y = 400
-                // KeyNode.x = -400
+                this.placeholder.addChild(KeyNode)
+                KeyNode.y = 0
+                KeyNode.x = 0
                 this.label.string = KeyNode.getComponent(ItemManager).label
                 break
             case ItemTypeEnum.Mail:

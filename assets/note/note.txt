@@ -4,3 +4,6 @@ cocos报错：load script [../Enum] failed : Error: Cannot find module '../Enum'
 为什么子类itemmanager无法继承父类rendermanager的onload方法?
 
 打不开H2场景，并且报错，但是运行时可以显示场景   Task [load-scene-by-uuid] run error, stop running other tasks.
+
+背包创建预制体的时候，预制体没有显示出来
+解决办法： 设置预制体的xy为0,0后解决 
