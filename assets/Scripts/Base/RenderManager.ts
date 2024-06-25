@@ -14,7 +14,7 @@ export abstract class RenderManager extends cc.Component {
 
     onload() {
         //绑定事件名称、方法、绑定上下文
-        console.log("这里是父类的onload方法");
+        // console.log("这里是父类的onload方法");
         EventManager.Instance.on(eventEnum.Render, this.render, this)
     }
 

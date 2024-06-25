@@ -33,7 +33,7 @@ export default class InventoryManager extends RenderManager {
 
     render() {
 
-        console.log("进入inventorymanager");
+        // console.log("进入inventorymanager");
 
         //删除placeholder的所有子元素，方便后面加入
         this.placeholder.removeAllChildren()
@@ -70,7 +70,7 @@ export default class InventoryManager extends RenderManager {
     }
     onLoad() {
         //父类onload方法没实现，所以在这边试一下
-        console.log("我代为执行父类onload方法");
+        // console.log("我代为执行父类onload方法");
         // super.onLoad()
         EventManager.Instance.on(eventEnum.Render, this.render, this)
     }

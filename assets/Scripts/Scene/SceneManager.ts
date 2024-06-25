@@ -5,18 +5,33 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
-import { SceneEnum } from "../Enum";
+import { RenderManager } from "../Base/RenderManager";
+import { SceneEnum, eventEnum } from "../Enum";
+import EventManager from "../Runtime/EventManager";
 
 
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class SenceManager extends cc.Component {
+export default class SenceManager extends RenderManager {
+    //继承rendermanager，通过场景实现已存在背包里的物品不显示在场景里
+    render() {
 
-    //父类
+    }
+    //放生成物，场景2要动态生成key，所以要在父节点存放
+    @property(cc.Node)
+    items: cc.Node = null;
+
+    //代替父类执行方法
+    onLoad() {
+        EventManager.Instance.on(eventEnum.Render, this.render, this)
+
+    }
 
     start() {
+        super.start()
+        //预加载场景
         cc.director.preloadScene(SceneEnum.H1)
         cc.director.preloadScene(SceneEnum.H2)
         cc.director.preloadScene(SceneEnum.H3)

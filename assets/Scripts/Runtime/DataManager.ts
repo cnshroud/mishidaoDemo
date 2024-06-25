@@ -27,7 +27,7 @@ export default class DataManager extends Singleton {
 
     private _items: Array<IItem> = [
         { type: ItemTypeEnum.Key, status: ItemStatusEnum.Scene },
-        { type: ItemTypeEnum.Mail, status: ItemStatusEnum.Scene },
+        { type: ItemTypeEnum.Mail, status: ItemStatusEnum.Inventory },
     ]
 
     //getset方法
