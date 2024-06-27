@@ -26,8 +26,10 @@ export default class DataManager extends Singleton {
     private _isSelect = false
     //邮箱状态,默认没使用
     private _mailboxStatus: TriggerStatusEnum = TriggerStatusEnum.Pengind
-
-
+    //老奶奶状态,默认没使用
+    private _GrandmoStatus: TriggerStatusEnum = TriggerStatusEnum.Pengind
+    //当前说到第几句话的索引
+    private _GrandmoDialogIndex: number = -1
     //物品初始状态
     private _items: Array<IItem> = [
         { type: ItemTypeEnum.Key, status: ItemStatusEnum.Scene },
@@ -71,8 +73,22 @@ export default class DataManager extends Singleton {
         this._mailboxStatus = newData
         this.render()
     }
+    get GrandmoStatus() {
+        return this._GrandmoStatus
 
+    }
+    set GrandmoStatus(newData: TriggerStatusEnum) {
+        this._GrandmoStatus = newData
+        this.render()
+    }
+    get GrandmoDialogIndex() {
+        return this._GrandmoDialogIndex
 
+    }
+    set GrandmoDialogIndex(newData) {
+        this._GrandmoDialogIndex = newData
+        this.render()
+    }
 
     //触发渲染函数
     render() {
