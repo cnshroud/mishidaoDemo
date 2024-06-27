@@ -28,12 +28,12 @@ export default class ItemManager extends RenderManager {
     sceneSf: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
     inventorySf: cc.SpriteFrame = null;
-    onLoad() {
-        //父类onload方法没实现，所以在这边试一下
-        console.log("我代为执行父类onload方法");
-        // super.onLoad()
-        EventManager.Instance.on(eventEnum.Render, this.render, this)
-    }
+    // onLoad() {
+    //     //父类onload方法没实现，所以在这边试一下
+    //     // console.log("我代为执行父类onload方法");
+    //     super.onLoad()
+    //     // EventManager.Instance.on(eventEnum.Render, this.render, this)
+    // }
 
 
     start() {
@@ -51,7 +51,7 @@ export default class ItemManager extends RenderManager {
         super.onDestroy();
         //移除点击事件
         //触发点击事件后回调touchend方法
-        this.node.on(cc.Node.EventType.TOUCH_END, this.touchend, this);
+        this.node.off(cc.Node.EventType.TOUCH_END, this.touchend, this);
     }
 
     //实现RenderManager的抽象方法,
@@ -67,22 +67,23 @@ export default class ItemManager extends RenderManager {
 
 
         //拿到sprite组件
-        const sprite = this.node.getComponent(cc.Sprite)
+        const spriteCompnent = this.node.getComponent(cc.Sprite)
+        // console.log(sprite);
+
         switch (status) {
             //如果在场景里则显示场景图片
             case ItemStatusEnum.Scene:
                 // console.log("在场景中");
-
                 this.node.active = true;
-                sprite.spriteFrame = this.sceneSf;
-                if (sprite.spriteFrame = this.sceneSf) {
+                spriteCompnent.spriteFrame = this.sceneSf;
+                if (spriteCompnent.spriteFrame = this.sceneSf) {
                     // console.log("场景图片");
                 }
                 break;
             //如果在背包里则显示背包图片
             case ItemStatusEnum.Inventory:
                 this.node.active = true;
-                sprite.spriteFrame = this.inventorySf;
+                spriteCompnent.spriteFrame = this.inventorySf;
                 break;
             case ItemStatusEnum.Disable:
                 this.node.active = false;
@@ -93,10 +94,6 @@ export default class ItemManager extends RenderManager {
         }
 
     }
-
-
-
-
 
 
 

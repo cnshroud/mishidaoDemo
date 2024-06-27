@@ -22,7 +22,7 @@ export default class EventManager extends Singleton {
     private eventDic: Map<string, Array<IItem>> = new Map()
 
 
-    //绑定事件：往map中添加方法，因为函数的this指向不稳定，所以在调用函数时最好绑定一下上下文ctx?上下文
+    //绑定事件：往map中添加方法，因为函数的this指向不稳定，所以在调用函数时最好绑定一下可选的上下文ctx?上下文,
     on(eventName: string, func: Function, ctx?: unknown) {
         //判断字典里有没有这个事件
         if (this.eventDic.has(eventName)) {
@@ -35,11 +35,11 @@ export default class EventManager extends Singleton {
 
     }
     //解绑事件
-    off(eventName: string, func: Function) {
+    off(eventName: string, func: Function, ctx?: unknown) {
         //判断字典里有没有这个事件
         if (this.eventDic.has(eventName)) {
             //查找这个函数有没有在这个数组里，要根据func来找
-            const index = this.eventDic.get(eventName).findIndex(i => i.func === func)
+            const index = this.eventDic.get(eventName).findIndex(i => i.func === func && i.ctx === ctx)
 
             //如果有则删除函数
             index > -1 && this.eventDic.get(eventName).splice(index, 1)

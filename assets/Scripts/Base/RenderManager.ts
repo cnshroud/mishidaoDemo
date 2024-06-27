@@ -12,7 +12,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export abstract class RenderManager extends cc.Component {
 
-    onload() {
+    onLoad() {
         //绑定事件名称、方法、绑定上下文
         // console.log("这里是父类的onload方法");
         EventManager.Instance.on(eventEnum.Render, this.render, this)
@@ -20,7 +20,7 @@ export abstract class RenderManager extends cc.Component {
 
     onDestroy() {
         //解绑事件名称、方法
-        EventManager.Instance.off(eventEnum.Render, this.render)
+        EventManager.Instance.off(eventEnum.Render, this.render, this)
     }
 
     start() {

@@ -68,12 +68,7 @@ export default class InventoryManager extends RenderManager {
         this.changBtninteractbale()
 
     }
-    onLoad() {
-        //父类onload方法没实现，所以在这边试一下
-        // console.log("我代为执行父类onload方法");
-        // super.onLoad()
-        EventManager.Instance.on(eventEnum.Render, this.render, this)
-    }
+
     //根据type生成对应类型的预制体
     generateItem(type: ItemTypeEnum) {
         switch (type) {

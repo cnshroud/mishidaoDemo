@@ -23,19 +23,22 @@ export default class SenceManager extends RenderManager {
     @property(cc.Node)
     items: cc.Node = null;
 
-    //代替父类执行方法
-    onLoad() {
-        EventManager.Instance.on(eventEnum.Render, this.render, this)
-
-    }
+    @property(cc.Prefab)
+    inventory: cc.Prefab = null
 
     start() {
         super.start()
         //预加载场景
-        cc.director.preloadScene(SceneEnum.H1)
-        cc.director.preloadScene(SceneEnum.H2)
-        cc.director.preloadScene(SceneEnum.H3)
-        cc.director.preloadScene(SceneEnum.H4)
+        // cc.director.preloadScene(SceneEnum.H1)
+        // cc.director.preloadScene(SceneEnum.H2)
+        // cc.director.preloadScene(SceneEnum.H3)
+        // cc.director.preloadScene(SceneEnum.H4)
+        if (this.inventory) {
+            const inventory = cc.instantiate(this.inventory)
+            console.log("inventory创建成功");
+
+            this.node.addChild(inventory)
+        }
 
     }
 

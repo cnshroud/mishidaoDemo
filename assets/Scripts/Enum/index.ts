@@ -27,3 +27,11 @@ export enum eventEnum {
 
 
 }
+export enum TriggerTypeEnum {
+    MailBox = "MailBox"
+}
+//Trigger状态枚举，使用和没使用
+export enum TriggerStatusEnum {
+    Pengind = "Pengind",    //没使用
+    Resolved = "Resolved"
+}

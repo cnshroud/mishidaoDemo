@@ -1,5 +1,5 @@
 import Singleton from "../Base/Singleton"
-import { ItemStatusEnum, ItemTypeEnum, eventEnum } from "../Enum"
+import { ItemStatusEnum, ItemTypeEnum, TriggerStatusEnum, eventEnum } from "../Enum"
 
 
 
@@ -24,10 +24,14 @@ export default class DataManager extends Singleton {
     private _curItemType: ItemTypeEnum | null = null
     //判断有没有选中背包物品
     private _isSelect = false
+    //邮箱状态,默认没使用
+    private _mailboxStatus: TriggerStatusEnum = TriggerStatusEnum.Pengind
 
+
+    //物品初始状态
     private _items: Array<IItem> = [
         { type: ItemTypeEnum.Key, status: ItemStatusEnum.Scene },
-        { type: ItemTypeEnum.Mail, status: ItemStatusEnum.Inventory },
+        { type: ItemTypeEnum.Mail, status: ItemStatusEnum.Disable },
     ]
 
     //getset方法
@@ -58,6 +62,18 @@ export default class DataManager extends Singleton {
         this._isSelect = newData
         this.render()
     }
+
+    get mailboxStatus() {
+        return this._mailboxStatus
+
+    }
+    set mailboxStatus(newData: TriggerStatusEnum) {
+        this._mailboxStatus = newData
+        this.render()
+    }
+
+
+
     //触发渲染函数
     render() {
         //触发渲染
