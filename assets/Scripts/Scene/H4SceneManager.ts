@@ -29,6 +29,7 @@ export default class H4SenceManager extends SenceManager {
         if (mail && mail.status === ItemStatusEnum.Scene) {
             const mailNode = cc.instantiate(this.mailPF)
             this.items.addChild(mailNode)
+
             //设置位置
             mailNode.setPosition(this.mailPlaceholder.position)
         }
