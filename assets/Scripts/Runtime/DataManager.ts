@@ -20,6 +20,14 @@ export default class DataManager extends Singleton {
         return super.GetInstance<DataManager>()
     }
 
+
+    //h2a正确数组
+    readonly H2Aanswer = [0, 1, 2, 3, 4, 5, null]
+    //初始数组
+    readonly H2AInitData = [1, 0, 3, 2, 5, 4, null]
+    //实时记录数组
+    private _H2AData = this.H2AInitData
+
     //用来记录当前背包显示的物品是什么，类型是ItemTypeEnum | null，默认为null
     private _curItemType: ItemTypeEnum | null = null
     //判断有没有选中背包物品
@@ -89,7 +97,14 @@ export default class DataManager extends Singleton {
         this._GrandmoDialogIndex = newData
         this.render()
     }
+    get H2AData() {
+        return this._H2AData
 
+    }
+    set H2AData(newData) {
+        this._H2AData = newData
+        this.render()
+    }
     //触发渲染函数
     render() {
         //触发渲染
