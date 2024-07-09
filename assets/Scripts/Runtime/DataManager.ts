@@ -38,6 +38,9 @@ export default class DataManager extends Singleton {
     private _GrandmoStatus: TriggerStatusEnum = TriggerStatusEnum.Pengind
     //当前说到第几句话的索引
     private _GrandmoDialogIndex: number = -1
+    //门状态,默认没使用
+    private _DoorStatus: TriggerStatusEnum = TriggerStatusEnum.Pengind
+
     //物品初始状态
     private _items: Array<IItem> = [
         { type: ItemTypeEnum.Key, status: ItemStatusEnum.Scene },
@@ -105,6 +108,15 @@ export default class DataManager extends Singleton {
         this._H2AData = newData
         this.render()
     }
+    get DoorStatus() {
+        return this._DoorStatus
+
+    }
+    set DoorStatus(newData) {
+        this._DoorStatus = newData
+        this.render()
+    }
+
     //触发渲染函数
     render() {
         //触发渲染

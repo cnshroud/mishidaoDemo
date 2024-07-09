@@ -5,6 +5,7 @@ export enum SceneEnum {
     H2 = "H2",
     H3 = "H3",
     H4 = "H4",
+    H2A = "H2A",
 }
 
 export enum ItemStatusEnum {
@@ -28,7 +29,9 @@ export enum eventEnum {
 
 }
 export enum TriggerTypeEnum {
-    MailBox = "MailBox"
+    MailBox = "MailBox",
+    Grandmo = "Grandmo",
+    Door = "Door"
 }
 //Trigger状态枚举，使用和没使用
 export enum TriggerStatusEnum {

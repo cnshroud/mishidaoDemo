@@ -1,11 +1,11 @@
-import { ItemStatusEnum, ItemTypeEnum, TriggerStatusEnum } from "../Enum/index";
+import { ItemStatusEnum, ItemTypeEnum, TriggerStatusEnum, TriggerTypeEnum } from "../Enum/index";
 import DataManager from "../Runtime/DataManager";
 import { TriggerManager } from "./TriggerManager";
 
 const { ccclass, property } = cc._decorator;
 @ccclass
 export default class GrandmoTriggerMananger extends TriggerManager {
-
+    type: TriggerTypeEnum = TriggerTypeEnum.Grandmo;
     @property(cc.Node)
     dialogNode: cc.Node = null;
 
