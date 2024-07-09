@@ -13,6 +13,8 @@ interface IItem {
     type: ItemTypeEnum
 }
 
+const STORAGE_KEY = "STORAGE_KEY"
+
 //这是数据中心类，实现ui与数据分离，便于保存，把钥匙和船票都放在数组里,继承Singleton单例模式，重写父类的方法
 export default class DataManager extends Singleton {
     //重写父类方法获得DataManager实例
@@ -130,6 +132,55 @@ export default class DataManager extends Singleton {
     render() {
         //触发渲染
         EventManager.Instance.emit(eventEnum.Render)
+        //实现本地化存储
+        cc.sys.localStorage.setItem(STORAGE_KEY, JSON.stringify({
+            H2AData: this.H2AData,
+            curItemType: this.curItemType,
+            isSelect: this.isSelect,
+            mailboxStatus: this.mailboxStatus,
+            GrandmoStatus: this.GrandmoStatus,
+            GrandmoDialogIndex: this.GrandmoDialogIndex,
+            DoorStatus: this.DoorStatus,
+            curScene: this.curScene,
+            items: this.items,
+        }))
+    }
+
+    restore() {
+        //读取本地存储，继续游戏
+        const _data = cc.sys.localStorage.getItem(STORAGE_KEY)
+        try {
+            const data = JSON.parse(_data)
+            this.H2AData = data.H2AData
+            this.curItemType = data.curItemType
+            this.isSelect = data.isSelect
+            this.mailboxStatus = data.mailboxStatus
+            this.GrandmoStatus = data.GrandmoStatus
+            this.GrandmoDialogIndex = data.GrandmoDialogIndex
+            this.DoorStatus = data.DoorStatus
+            this.curScene = data.curScene
+            this.items = data.items
+        } catch {
+            //如果错了就执行reset()
+            this.reset()
+        }
+    }
+
+    reset() {
+        //新游戏初始化
+        this.H2AData = [...this.H2AInitData]
+        this.curItemType = null
+        this.isSelect = false
+        this.mailboxStatus = TriggerStatusEnum.Pengind
+        this.GrandmoStatus = TriggerStatusEnum.Pengind
+        this.GrandmoDialogIndex = -1
+        this.DoorStatus = TriggerStatusEnum.Pengind
+        this.curScene = SceneEnum.H1
+        this.items = [
+            { type: ItemTypeEnum.Key, status: ItemStatusEnum.Scene },
+            { type: ItemTypeEnum.Mail, status: ItemStatusEnum.Disable },
+        ]
+
     }
 
 }
