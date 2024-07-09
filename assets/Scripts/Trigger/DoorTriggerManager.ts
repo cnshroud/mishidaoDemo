@@ -20,9 +20,11 @@ export default class DoorTriggerManager extends TriggerManager {
     handleTrigger(): void {
         //判断门的状态，如果为true就进入小游戏场景，否则进入场景h3
         if (DataManager.Instance.DoorStatus === TriggerStatusEnum.Pengind) {
-            cc.director.loadScene(SceneEnum.H2A)
+            // cc.director.loadScene(SceneEnum.H2A)
+            DataManager.Instance.curScene = SceneEnum.H2A
         } else {
-            cc.director.loadScene(SceneEnum.H3)
+            // cc.director.loadScene(SceneEnum.H3)
+            DataManager.Instance.curScene = SceneEnum.H3
         }
     }
 

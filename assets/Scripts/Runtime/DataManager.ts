@@ -1,5 +1,5 @@
 import Singleton from "../Base/Singleton"
-import { ItemStatusEnum, ItemTypeEnum, TriggerStatusEnum, eventEnum } from "../Enum"
+import { ItemStatusEnum, ItemTypeEnum, SceneEnum, TriggerStatusEnum, eventEnum } from "../Enum"
 
 
 
@@ -40,6 +40,8 @@ export default class DataManager extends Singleton {
     private _GrandmoDialogIndex: number = -1
     //门状态,默认没使用
     private _DoorStatus: TriggerStatusEnum = TriggerStatusEnum.Pengind
+    //场景数据
+    private _curScene: SceneEnum = SceneEnum.H1
 
     //物品初始状态
     private _items: Array<IItem> = [
@@ -116,7 +118,14 @@ export default class DataManager extends Singleton {
         this._DoorStatus = newData
         this.render()
     }
+    get curScene() {
+        return this._curScene
 
+    }
+    set curScene(newData) {
+        this._curScene = newData
+        this.render()
+    }
     //触发渲染函数
     render() {
         //触发渲染

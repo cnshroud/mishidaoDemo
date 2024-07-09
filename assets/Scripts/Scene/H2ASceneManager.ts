@@ -5,11 +5,12 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import { SceneEnum } from "../Enum/index";
 import SenceManager from "./SceneManager";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class H2ASenceManager extends SenceManager {
-
+    type: SceneEnum = SceneEnum.H2A;
 }

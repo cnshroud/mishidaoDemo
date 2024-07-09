@@ -1,6 +1,6 @@
 
 
-import { ItemStatusEnum, ItemTypeEnum, eventEnum } from "../Enum";
+import { ItemStatusEnum, ItemTypeEnum, SceneEnum, eventEnum } from "../Enum/index";
 import DataManager from "../Runtime/DataManager";
 import EventManager from "../Runtime/EventManager";
 import SenceManager from "./SceneManager";
@@ -9,6 +9,9 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class H4SenceManager extends SenceManager {
+    type: SceneEnum = SceneEnum.H4
+
+
     //船票的预制体
     @property(cc.Prefab)
     mailPF: cc.Prefab = null;

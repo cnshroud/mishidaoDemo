@@ -89,7 +89,8 @@ export default class H2AGameManager extends RenderManager {
             console.log(DataManager.Instance.DoorStatus);
 
             //跳转场景
-            cc.director.loadScene(SceneEnum.H2)
+            // cc.director.loadScene(SceneEnum.H2)
+            DataManager.Instance.curScene = SceneEnum.H2
         }
 
     }

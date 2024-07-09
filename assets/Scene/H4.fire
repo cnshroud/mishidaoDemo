@@ -635,7 +635,7 @@
     },
     "component": "",
     "_componentId": "934efEeqCdE1perZCPHLZ5R",
-    "handler": "changeScenee",
+    "handler": "changeScene",
     "customEventData": "H2"
   },
   {

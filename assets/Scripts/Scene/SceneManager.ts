@@ -6,7 +6,8 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import { RenderManager } from "../Base/RenderManager";
-import { SceneEnum, eventEnum } from "../Enum";
+import { SceneEnum, eventEnum } from "../Enum/index";
+import DataManager from "../Runtime/DataManager";
 import EventManager from "../Runtime/EventManager";
 
 
@@ -15,10 +16,8 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class SenceManager extends RenderManager {
-    //继承rendermanager，通过场景实现已存在背包里的物品不显示在场景里
-    render() {
-
-    }
+    //给每个场景写个类型
+    type: SceneEnum
     //放生成物，场景2要动态生成key，所以要在父节点存放
     @property(cc.Node)
     items: cc.Node = null;
@@ -44,7 +43,17 @@ export default class SenceManager extends RenderManager {
 
     changeScene(e: Event, sence: string) {
         //sence从SceneEnum中获取
-        cc.director.loadScene(sence as SceneEnum)
+        //
+        //通过datamamager获取当前场景
+        DataManager.Instance.curScene = sence as SceneEnum
+    }
+    //通过datamamager获取当前场景
+    render() {
+        //判断数据中心的场景不等于当前场景
+        if (DataManager.Instance.curScene === this.type) {
+            return
+        }
+        cc.director.loadScene(DataManager.Instance.curScene)
     }
 }
 

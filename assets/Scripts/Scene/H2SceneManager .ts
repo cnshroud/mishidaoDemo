@@ -1,6 +1,6 @@
 
 
-import { ItemStatusEnum, ItemTypeEnum, eventEnum } from "../Enum";
+import { ItemStatusEnum, ItemTypeEnum, SceneEnum, eventEnum } from "../Enum";
 import DataManager from "../Runtime/DataManager";
 import EventManager from "../Runtime/EventManager";
 import SenceManager from "./SceneManager";
@@ -9,6 +9,9 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class H2SenceManager extends SenceManager {
+    type: SceneEnum = SceneEnum.H2
+
+
     //钥匙的预制体
     @property(cc.Prefab)
     KeyPF: cc.Prefab = null;
