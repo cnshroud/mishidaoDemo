@@ -670,7 +670,12 @@
     },
     "_enabled": true,
     "items": null,
-    "inventory": null,
+    "inventory": {
+      "__uuid__": "6355fc5e-1f5a-4114-ab41-7ffb9d3d87c3"
+    },
+    "Menu": {
+      "__uuid__": "7fe20712-589d-4615-ac12-c9b92a51ac40"
+    },
     "_id": "b2+o45qzJOsItKKkDagtXF"
   }
 ]

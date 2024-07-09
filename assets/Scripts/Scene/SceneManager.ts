@@ -25,6 +25,10 @@ export default class SenceManager extends RenderManager {
     @property(cc.Prefab)
     inventory: cc.Prefab = null
 
+    //菜单预制体
+    @property(cc.Prefab)
+    Menu: cc.Prefab = null
+
     start() {
         super.start()
         //预加载场景
@@ -32,11 +36,17 @@ export default class SenceManager extends RenderManager {
         // cc.director.preloadScene(SceneEnum.H2)
         // cc.director.preloadScene(SceneEnum.H3)
         // cc.director.preloadScene(SceneEnum.H4)
+        //实例化背包
         if (this.inventory) {
             const inventory = cc.instantiate(this.inventory)
-            console.log("inventory创建成功");
+            // console.log("inventory创建成功");
 
             this.node.addChild(inventory)
+        }
+        //实例化场景
+        if (this.Menu) {
+            const Menu = cc.instantiate(this.Menu)
+            this.node.addChild(Menu)
         }
 
     }

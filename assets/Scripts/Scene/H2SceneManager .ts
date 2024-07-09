@@ -1,6 +1,6 @@
 
 
-import { ItemStatusEnum, ItemTypeEnum, SceneEnum, eventEnum } from "../Enum";
+import { ItemStatusEnum, ItemTypeEnum, SceneEnum, eventEnum } from "../Enum/index";
 import DataManager from "../Runtime/DataManager";
 import EventManager from "../Runtime/EventManager";
 import SenceManager from "./SceneManager";
