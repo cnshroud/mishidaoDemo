@@ -25,8 +25,8 @@ export default class DataManager extends Singleton {
     readonly H2Aanswer = [0, 1, 2, 3, 4, 5, null]
     //初始数组
     readonly H2AInitData = [1, 0, 3, 2, 5, 4, null]
-    //实时记录数组
-    private _H2AData = this.H2AInitData
+    //实时记录数组,写成结构防止H2AInitData数组被改变，这样两个数组就不一样了，就不会互相改变
+    private _H2AData = [...this.H2AInitData]
 
     //用来记录当前背包显示的物品是什么，类型是ItemTypeEnum | null，默认为null
     private _curItemType: ItemTypeEnum | null = null

@@ -1,4 +1,5 @@
 import { RenderManager } from "../Base/RenderManager";
+import { SceneEnum, TriggerStatusEnum } from "../Enum";
 import DataManager from "../Runtime/DataManager";
 import CircleManager from "./CircleManager";
 
@@ -26,6 +27,8 @@ export default class H2AGameManager extends RenderManager {
         super.start()
         this.genrateCirclesMap()
         this.generateLines()
+        //检测游戏是否一开始就成功了
+        this.checkSuccess()
     }
 
     render() {
@@ -43,6 +46,10 @@ export default class H2AGameManager extends RenderManager {
 
     }
     handleCircleTouch(e, _index: string) {
+        //每次点击前检查一下门的状态,防止游戏已经成功了用户还乱点小游戏
+        if (DataManager.Instance.DoorStatus === TriggerStatusEnum.Resolved) {
+            return
+        }
         const index = parseInt(_index)
         //拿到点击的circle的index值
         const curCircleContentIndex = DataManager.Instance.H2AData[index]
@@ -67,8 +74,29 @@ export default class H2AGameManager extends RenderManager {
                 DataManager.Instance.H2AData = [...DataManager.Instance.H2AData]
             }
         }
+        this.checkSuccess()
     }
 
+    //检测小游戏是否成功完成了了
+    checkSuccess() {
+        //判断现在的数据是否与答案一致,如果每一项的索引和正确答案一样则返回true
+        if (DataManager.Instance.H2AData.every((e, i) => DataManager.Instance.H2Aanswer[i] === e)) {
+            console.log("小游戏完成");
+
+
+            //相同则把h2场景 中的门的属性设置为Resolved
+            DataManager.Instance.DoorStatus = TriggerStatusEnum.Resolved
+            console.log(DataManager.Instance.DoorStatus);
+
+            //跳转场景
+            cc.director.loadScene(SceneEnum.H2)
+        }
+
+    }
+    //重置小游戏
+    resetContent() {
+        DataManager.Instance.H2AData = [...DataManager.Instance.H2AInitData]
+    }
 
     genrateCirclesMap() {
         this.circlesMap.set(this.circle[0], [this.circle[1], this.circle[4], this.circle[6]])

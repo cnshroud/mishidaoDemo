@@ -641,7 +641,7 @@
     },
     "component": "",
     "_componentId": "11301Psbt5OOrBzwS0UFrgj",
-    "handler": "changeScenee",
+    "handler": "changeScene",
     "customEventData": "H4"
   },
   {
@@ -927,7 +927,7 @@
     },
     "component": "",
     "_componentId": "11301Psbt5OOrBzwS0UFrgj",
-    "handler": "changeScenee",
+    "handler": "changeScene",
     "customEventData": "H1"
   },
   {

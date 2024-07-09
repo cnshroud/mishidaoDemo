@@ -626,7 +626,7 @@
     },
     "component": "",
     "_componentId": "510d7ZipNBCx7tZl5jKeT/0",
-    "handler": "changeScenee",
+    "handler": "changeScene",
     "customEventData": "H2"
   },
   {
@@ -669,6 +669,8 @@
       "__id__": 7
     },
     "_enabled": true,
+    "items": null,
+    "inventory": null,
     "_id": "b2+o45qzJOsItKKkDagtXF"
   }
 ]

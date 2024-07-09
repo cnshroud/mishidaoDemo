@@ -42,7 +42,7 @@ export default class SenceManager extends RenderManager {
 
     }
 
-    changeScenee(e: Event, sence: string) {
+    changeScene(e: Event, sence: string) {
         //sence从SceneEnum中获取
         cc.director.loadScene(sence as SceneEnum)
     }
