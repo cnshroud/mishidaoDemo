@@ -1,6 +1,7 @@
 
 
 import { ItemStatusEnum, ItemTypeEnum, SceneEnum, eventEnum } from "../Enum/index";
+import MusicManager from "../Music/MusicManager";
 import DataManager from "../Runtime/DataManager";
 import EventManager from "../Runtime/EventManager";
 import SenceManager from "./SceneManager";
@@ -20,12 +21,17 @@ export default class H2SenceManager extends SenceManager {
     KeyPlaceholder: cc.Node = null;
     start(): void {
         super.start()
-
+        //h2场景根据isMusicPlaying状态来判断是否播放背景音乐
+        if (cc.audioEngine.isMusicPlaying()) {
+            return
+        } else {
+            cc.find("music").getComponent(MusicManager).openBgm();
+        }
+        // this.music.stopMusic()
+        console.log(cc.audioEngine.isMusicPlaying());
     }
 
     render() {
-
-
         super.render()
         //清空子元素
         this.items.removeAllChildren()

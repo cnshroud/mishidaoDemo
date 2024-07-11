@@ -9,7 +9,7 @@ import { RenderManager } from "../Base/RenderManager";
 import { SceneEnum, eventEnum } from "../Enum/index";
 import DataManager from "../Runtime/DataManager";
 import EventManager from "../Runtime/EventManager";
-
+import MusicManager from "../Music/MusicManager";
 
 
 const { ccclass, property } = cc._decorator;
@@ -31,11 +31,6 @@ export default class SenceManager extends RenderManager {
 
     start() {
         super.start()
-        //预加载场景
-        // cc.director.preloadScene(SceneEnum.H1)
-        // cc.director.preloadScene(SceneEnum.H2)
-        // cc.director.preloadScene(SceneEnum.H3)
-        // cc.director.preloadScene(SceneEnum.H4)
         //实例化背包
         if (this.inventory) {
             const inventory = cc.instantiate(this.inventory)
@@ -48,6 +43,7 @@ export default class SenceManager extends RenderManager {
             const Menu = cc.instantiate(this.Menu)
             this.node.addChild(Menu)
         }
+
 
     }
 
